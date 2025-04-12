@@ -7,15 +7,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OlxAppCBackstagePassesTest {
-	
+
 	@Test
 	public void testUpdateQualityBackstagePasses1() {
 		Item item = new Item("ColdPlay concert passes", 15, 3);
-		Item[] items = new Item[] { item };
-		OlxApp app = new OlxApp(items);
+		OlxApp app = new OlxApp(new Item[] { item });
+
 		app.updateQuality();
-		assertEquals("ColdPlay concert passes",
-				app.items[0].name);
+
+		assertEquals("ColdPlay concert passes", app.items[0].name);
 		assertEquals(14, app.items[0].sellIn);
 		assertEquals(4, app.items[0].quality);
 	}
