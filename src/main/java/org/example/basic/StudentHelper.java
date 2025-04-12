@@ -63,13 +63,29 @@ public class StudentHelper {
      * marks1 - your marks
      * marks2 - your friends marks
     */
-        
-    public String willQualifyForQuiz(int marks1, int marks2, boolean isMaths) {
-        if ((isMaths ? marks1 <= 25 : marks1 <= 20)
-                || (isMaths ? marks2 <= 25 : marks2 <= 20)) return "NO";
-        if ((isMaths ? marks1 >= 85 : marks1 >= 80)
-                || (isMaths ? marks2 >= 85 : marks2 >= 80)) return "YES";
-        return "MAYBE";
-    }	
 
+	private static final int GOOD_THRESHOLD = 80;
+	private static final int BAD_THRESHOLD = 20;
+	private static final int MATHS_MARK_ADJUSTMENT = 5;
+
+	public String willQualifyForQuiz(int marks1, int marks2, boolean isMaths) {
+		int goodLimit = GOOD_THRESHOLD + (isMaths ? MATHS_MARK_ADJUSTMENT : 0);
+		int badLimit = BAD_THRESHOLD + (isMaths ? MATHS_MARK_ADJUSTMENT : 0);
+
+		if (isNotGood(marks1, badLimit) || isNotGood(marks2, badLimit)) {
+			return "NO";
+		}
+		if (isVeryGood(marks1, goodLimit) || isVeryGood(marks2, goodLimit)) {
+			return "YES";
+		}
+		return "MAYBE";
+	}
+
+	private boolean isNotGood(int marks, int badLimit) {
+		return marks <= badLimit;
+	}
+
+	private boolean isVeryGood(int marks, int goodLimit) {
+		return marks >= goodLimit;
+	}
 }
