@@ -9,25 +9,41 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StudentHelperTest {
 
 	StudentHelper helper = new StudentHelper();
-	
-	@Test
-	public void testIsGradeB() {
-		assertEquals(false,helper.isGradeB(30, false));
-		assertEquals(false,helper.isGradeB(50, false));
-		assertEquals(true,helper.isGradeB(51, false));
-		assertEquals(true,helper.isGradeB(80, false));
-		assertEquals(false,helper.isGradeB(81, false));
-		
-		assertEquals(false,helper.isGradeB(30, true));
-		assertEquals(false,helper.isGradeB(50, true));
-		assertEquals(true,helper.isGradeB(51, true));
-		assertEquals(true,helper.isGradeB(80, true));
-		assertEquals(true,helper.isGradeB(81, true));
-		assertEquals(true,helper.isGradeB(89, true));
-		assertEquals(true,helper.isGradeB(90, true));
-		assertEquals(false,helper.isGradeB(91, true));
 
+	// Test GradeB Component
+	@Test
+	public void shouldReturnFalseForGradeB_WhenScoreIs50OrLess_RegardlessOfMaths() {
+		assertEquals(false, helper.isGradeB(30, false));
+		assertEquals(false, helper.isGradeB(50, false));
+		assertEquals(false, helper.isGradeB(30, true));
+		assertEquals(false, helper.isGradeB(50, true));
 	}
+
+	@Test
+	public void shouldReturnTrueForGradeB_WhenScoreBetween51And80_WithoutMaths() {
+		assertEquals(true, helper.isGradeB(51, false));
+		assertEquals(true, helper.isGradeB(80, false));
+	}
+
+	@Test
+	public void shouldReturnFalseForGradeB_WhenScoreAbove80_WithoutMaths() {
+		assertEquals(false, helper.isGradeB(81, false));
+	}
+
+	@Test
+	public void shouldReturnTrueForGradeB_WhenScoreBetween51And90_WithMaths() {
+		assertEquals(true, helper.isGradeB(51, true));
+		assertEquals(true, helper.isGradeB(80, true));
+		assertEquals(true, helper.isGradeB(81, true));
+		assertEquals(true, helper.isGradeB(89, true));
+		assertEquals(true, helper.isGradeB(90, true));
+	}
+
+	@Test
+	public void shouldReturnFalseForGradeB_WhenScoreAbove90_WithMaths() {
+		assertEquals(false, helper.isGradeB(91, true));
+	}
+
 
 	@Test
 	public void testGetGrade() {
