@@ -35,13 +35,12 @@ public class OlxAppCBackstagePassesTest {
 	@Test
 	public void testUpdateQualityBackstagePasses3() {
 		Item item = new Item("ColdPlay concert passes", 4, 3);
-		Item[] items = new Item[] { item };
-		OlxApp app = new OlxApp(items);
+		OlxApp app = new OlxApp(new Item[] { item });
+
 		app.updateQuality();
-		assertEquals("ColdPlay concert passes",
-				app.items[0].name);
+
+		assertEquals("ColdPlay concert passes", app.items[0].name);
 		assertEquals(3, app.items[0].sellIn);
 		assertEquals(6, app.items[0].quality);
 	}
-
 }
