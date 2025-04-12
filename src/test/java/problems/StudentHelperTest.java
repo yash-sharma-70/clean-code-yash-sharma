@@ -45,27 +45,28 @@ public class StudentHelperTest {
 	}
 
 
+	// Test Grade Component
 	@Test
-	public void testGetGrade() {
+	public void shouldReturnCorrectGrade_WithoutMaths() {
+		assertEquals("A", helper.getGrade(99, false));
+		assertEquals("A", helper.getGrade(91, false));
+		assertEquals("B", helper.getGrade(85, false));
+		assertEquals("B", helper.getGrade(51, false));
+		assertEquals("C", helper.getGrade(50, false));
+		assertEquals("C", helper.getGrade(45, false));
+		assertEquals("B", helper.getGrade(90, false));
+	}
 
-		assertEquals("A",helper.getGrade(99, false));
-		assertEquals("A",helper.getGrade(91, false));
-		assertEquals("B",helper.getGrade(85, false));
-		assertEquals("B",helper.getGrade(51, false));
-		assertEquals("C",helper.getGrade(50, false));
-		assertEquals("C",helper.getGrade(45, false));
-
-		assertEquals("A",helper.getGrade(99, true));
-		assertEquals("A",helper.getGrade(96, true));
-		assertEquals("B",helper.getGrade(89, true));
-		assertEquals("B",helper.getGrade(56, true));
-		assertEquals("C",helper.getGrade(55, true));
-		assertEquals("C",helper.getGrade(50, true));
-		assertEquals("C",helper.getGrade(45, true));
-
-		//Will fail due to wrong implementation
-		//assertEquals("B",helper.getGrade(95, true));
-		//assertEquals("B",helper.getGrade(90, false));
+	@Test
+	public void shouldReturnCorrectGrade_WithMaths() {
+		assertEquals("A", helper.getGrade(99, true));
+		assertEquals("A", helper.getGrade(96, true));
+		assertEquals("B", helper.getGrade(89, true));
+		assertEquals("B", helper.getGrade(56, true));
+		assertEquals("C", helper.getGrade(55, true));
+		assertEquals("C", helper.getGrade(50, true));
+		assertEquals("C", helper.getGrade(45, true));
+		assertEquals("B", helper.getGrade(95, true));
 	}
 
 	@Test
