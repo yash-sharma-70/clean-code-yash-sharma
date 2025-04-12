@@ -33,9 +33,10 @@ public class OlxAppAMangoesTest {
 	@Test
 	public void testUpdateQualityForExpiredItem() {
 		Item item = new Item("Mangoes", -1, 3);
-		Item[] items = new Item[] { item };
-		OlxApp app = new OlxApp(items);
+		OlxApp app = new OlxApp(new Item[] { item });
+
 		app.updateQuality();
+
 		assertEquals("Mangoes", app.items[0].name);
 		assertEquals(-2, app.items[0].sellIn);
 		assertEquals(1, app.items[0].quality);
