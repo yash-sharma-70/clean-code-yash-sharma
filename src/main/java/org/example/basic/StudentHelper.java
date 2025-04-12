@@ -6,8 +6,12 @@ public class StudentHelper {
 	/*
 	* You get a grade B if marks are between 51 and 80 (both inclusive). Except for Maths where the upper limit is increased by 10.
 	*/
+	private static final int GRADE_B_LOWER_LIMIT = 51;
+	private static final int GRADE_B_UPPER_LIMIT = 80;
+	private static final int MATHS_GRADE_OFFSET = 10;
+
 	public boolean isGradeB(int marks, boolean isMaths) {
-		return isMaths ? marks>=51 && marks<=90 : marks>=51 && marks<=80; 
+		return isMaths ? (marks >= GRADE_B_LOWER_LIMIT && marks <= GRADE_B_UPPER_LIMIT + MATHS_GRADE_OFFSET) : (marks >= GRADE_B_LOWER_LIMIT && marks <= GRADE_B_UPPER_LIMIT);
 	}
 
 	/* PROBLEM 2 */
