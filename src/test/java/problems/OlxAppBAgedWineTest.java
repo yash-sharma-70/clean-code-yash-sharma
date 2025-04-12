@@ -23,9 +23,10 @@ public class OlxAppBAgedWineTest {
 	@Test
 	public void testUpdateQualityAgedWine2() {
 		Item item = new Item("Aged Wine", -1, 3);
-		Item[] items = new Item[] { item };
-		OlxApp app = new OlxApp(items);
+		OlxApp app = new OlxApp(new Item[] { item });
+
 		app.updateQuality();
+
 		assertEquals("Aged Wine", app.items[0].name);
 		assertEquals(-2, app.items[0].sellIn);
 		assertEquals(5, app.items[0].quality);
