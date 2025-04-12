@@ -21,27 +21,31 @@ public class StudentHelper {
 	Except for Maths where marks to get a Grade are 5 higher than required for other subjects.
 	*/
 
+	private static final int A_GRADE_LOWER_LIMIT = 91;
+	private static final int A_GRADE_UPPER_LIMIT = 100;
+	private static final int B_GRADE_LOWER_LIMIT = 51;
+	private static final int B_GRADE_UPPER_LIMIT = 90;
+	private static final int MATHS_GRADE_SHIFT = 5;
+
 	public String getGrade(int mark, boolean isMaths) {
-		String grade = "C";
-		
-		if (isGradeA(mark, isMaths))
-			grade = "A";
-		else if (isBGrade(mark, isMaths)) {
-			grade = "B";
+		if (isEligibleForGradeA(mark, isMaths)) {
+			return "A";
+		} else if (isEligibleForGradeB(mark, isMaths)) {
+			return "B";
+		} else {
+			return "C";
 		}
-		return grade;
 	}
 
-	private boolean isGradeA(int mark, boolean isMaths) {
-		int lowerLimitForAGrade = isMaths ? 95
-				: 90;
-		return mark > lowerLimitForAGrade;
+	private boolean isEligibleForGradeA(int mark, boolean isMaths) {
+		int lowerLimit = A_GRADE_LOWER_LIMIT + (isMaths ? MATHS_GRADE_SHIFT : 0);
+		return (mark >= lowerLimit && mark <= A_GRADE_UPPER_LIMIT);
 	}
 
-	private boolean isBGrade(int mark, boolean isMaths) {
-		int lowerLimitGradeB = isMaths ? 55
-				: 50;
-		return mark > lowerLimitGradeB && mark < 90;
+	private boolean isEligibleForGradeB(int mark, boolean isMaths) {
+		int lowerLimit = B_GRADE_LOWER_LIMIT + (isMaths ? MATHS_GRADE_SHIFT : 0);
+		int upperLimit = B_GRADE_UPPER_LIMIT + (isMaths ? MATHS_GRADE_SHIFT : 0);
+		return (mark >= lowerLimit && mark <= upperLimit);
 	}
 
     /*  PROBLEM 3
