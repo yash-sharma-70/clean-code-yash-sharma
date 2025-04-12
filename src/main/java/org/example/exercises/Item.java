@@ -1,14 +1,11 @@
 package org.example.exercises;
 
 public class Item {
-
 	public String name;
+	public Integer sellIn;
+	public Integer quality;
 
-	public int sellIn;
-
-	public int quality;
-
-	public Item(String name, int sellIn, int quality) {
+	public Item(String name, Integer sellIn, Integer quality) {
 		this.name = name;
 		this.sellIn = sellIn;
 		this.quality = quality;
@@ -16,8 +13,6 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "\n name=" + name + ", " + sellIn + ", " + quality + "\n" ;
+		return String.format("Item{name='%s', sellIn=%d, quality=%d}", name, sellIn, quality);
 	}
-	
-	
 }
